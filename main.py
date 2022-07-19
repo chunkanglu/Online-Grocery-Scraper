@@ -38,7 +38,7 @@ if(__name__ == "__main__"):
     csvWriter = CsvWriter()
     csvWriter.write(records, os.environ['OUTPUT_FILE_NAME']+".csv")
 
-    sendEmail()
+    sendEmail(os.environ['EMAIL_FROM'], os.environ['EMAIL_TO'], os.environ['OUTPUT_FILE_NAME']+".csv", os.environ['EMAIL_SUBJECT'], os.environ["EMAIL_PWD"])
 
     # def get_split_amt(name, start, end):
     #     split = re.split(r'[xX×]', name[start:end].strip().replace(",", "."))

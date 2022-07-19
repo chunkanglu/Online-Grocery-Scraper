@@ -1,19 +1,21 @@
 from email.message import EmailMessage
 import smtplib
-import os
 
-def sendEmail():
+HOST_ADDRESS = "smtp-mail.outlook.com"
+PORT = 587
+
+def sendEmail(_from, _to, filename, subject, pwd):
     msg = EmailMessage()
-    msg["From"] = os.environ['EMAIL_FROM']
-    msg["Subject"] = os.environ['EMAIL_SUBJECT']
-    msg["To"] = os.environ['EMAIL_TO']
-    msg.set_content("Attached is the price data.")
-    msg.add_attachment(open(os.environ['OUTPUT_FILE_NAME']+".csv", "r").read(), filename=os.environ['OUTPUT_FILE_NAME']+".csv")
+    msg["From"] = _from
+    msg["Subject"] = subject
+    msg["To"] = _to
+    # msg.set_content("Attached is the price data.")
+    msg.add_attachment(open(filename, "r").read(), filename=filename)
 
-    server = smtplib.SMTP("smtp.gmail.com", 587)
+    server = smtplib.SMTP(HOST_ADDRESS, PORT)
     server.ehlo()
     server.starttls()
     server.ehlo()
-    server.login(os.environ['EMAIL_FROM'], os.environ['EMAIL_PWD'])
+    server.login(_from, pwd)
 
     server.send_message(msg)
