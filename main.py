@@ -1,5 +1,3 @@
-#!"C:\Users\Kang\.conda\envs\web_scraping\python.exe"
-
 from selenium import webdriver
 from dotenv import load_dotenv
 import os
@@ -39,4 +37,3 @@ if(__name__ == "__main__"):
     csvWriter.write(records, os.environ['OUTPUT_FILE_NAME']+".csv")
 
     sendEmail(os.environ['EMAIL_FROM'], os.environ['EMAIL_TO'], os.environ['OUTPUT_FILE_NAME']+".csv", os.environ['EMAIL_SUBJECT'], os.environ["EMAIL_PWD"])
-    
