@@ -1,0 +1,4 @@
+.env
+links.txt
+__pycache__
+WeeklyPriceData.csv
